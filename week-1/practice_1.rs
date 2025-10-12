@@ -1,4 +1,4 @@
 fn main() {
-	println!("Welcome to COS101!");
+	println!("Welcome to COS11!");
 }
 
