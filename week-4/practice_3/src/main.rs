@@ -8,7 +8,7 @@ fn main() {
     io::stdin().read_line(&mut input1).expect("Not a valid string");
     let base:f32 = input1.trim().parse().expect("Not a valid number");
 
-    println!("Enter base: ");
+    println!("Enter height: ");
     io::stdin().read_line(&mut input2).expect("Not a valid string");
     let height:f32 = input2.trim().parse().expect("Not a valid number");
 
