@@ -4,11 +4,11 @@ fn main() {
 	println!("The sum of 5550 and 7310 = {}", sum);
 
 	// subtraction
-	let difference:u32 = 95.5 - 4.3;
+	let difference = 95.5 - 4.3;
 	println!("The difference of 95.5 and 4.3 = ()", difference);
 
 	// multiplication
-	let product:f32 = 4 * 30;
+	let product = 4 * 30;
 	println!("The multiple of 4 and 30 = {}", product);	
 
 	// division
