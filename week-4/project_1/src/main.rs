@@ -17,7 +17,7 @@ fn main() {
     io::stdin().read_line(&mut input3).expect("Failed to read input");    
     let c:f64 = input3.trim().parse().expect("Invalid input for c");
 
-    let discriminant = b * b - 4.0 * a * c;
+    let discriminant = b.powi(2) - 4.0 * a * c;
 
     if discriminant > 0.0 {
         let root1 = (-b + discriminant.sqrt()) / (2.0 * a);
