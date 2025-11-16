@@ -6,7 +6,7 @@ fn add(a: i32, b: i32) {
 }
 
 fn main() {
-    let mut input1 = STring::new();
+    let mut input1 = String::new();
     println!("ENter input for paramter A:");
     io::stdin().read_line(&mut input1).expect("Failed to readinput");
     let a:i32 = input1.trim().parse().expect("Invalid input")

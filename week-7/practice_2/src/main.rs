@@ -17,5 +17,5 @@ fn checker(){
 
 fn main() {
     println!("Welcome! This program checks whether a character variable contains a digit or not!");
-    checker()
+    checker();
 }
