@@ -33,7 +33,7 @@ fn main() {
     println!("Enter the staff member's job title (e.g., Associate):");
     let mut input_title = String::new();
     io::stdin().read_line(&mut input_title).expect("Failed to read line");
-    let mut clean_title = input_title.trim();
+    let job_title = input_title.trim();
 
     println!("Enter the number of years of work experience (e.g., 6):");
     let mut input_exp = String::new();
@@ -47,12 +47,12 @@ fn main() {
         }
     };
 
-    let mut result_message = format!("No matching level found for title '{}' with {} years of experience.", clean_title, experience_years);
+    let mut result_message = format!("No matching level found for title '{}' with {} years of experience.", job_title, experience_years);
     let mut department_title = format!("Department not found");
 
     // Iterate through the vectors
     for i in 0..job_titles.len() {
-        if job_titles[i] == clean_title {
+        if job_titles[i] == job_title {
             if experience_years >= min_experience[i] && experience_years <= max_experience[i] {
                 result_message = format!("The staff member holds position: {} ({} to {} years experience required).", 
                     levels[i], min_experience[i], max_experience[i]);
@@ -60,7 +60,7 @@ fn main() {
                 break; // Found the correct, validated level
             } else {
                 result_message = format!("Found title '{}', but {} years of experience does not match the required range of {} to {} years for this level ({}).", 
-                    clean_title, experience_years, min_experience[i], max_experience[i], levels[i]);
+                    job_title, experience_years, min_experience[i], max_experience[i], levels[i]);
                 department_title = format!("Department: {}", departments[i]);
                 break; // Found the title but experience is wrong
             }
@@ -70,6 +70,6 @@ fn main() {
 
     println!("\n--- Result ---");
     println!("{}", department_title);
-    println!("Position: {}", clean_title);
+    println!("Job Title: {}", job_title);
     println!("{}", result_message);
 }
