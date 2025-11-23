@@ -1,37 +1,39 @@
 use std::io;
-use std::u32; // Import u32::MAX for open-ended range
 
-// Storing data as (job_title, level_identifier, min_years, max_years)
-static JOB_DATA_EXP: [(&str, &str, u32, u32); 23] = [
-    ("Intern", "APS 1-2", 0, 2),
-    ("Paralegal", "APS 1-2", 0, 2),
-    ("Placement", "APS 1-2", 0, 2),
-    ("Administrator", "APS 3-5", 3, 5),
-    ("Research Assistant", "APS 3-5", 3, 5),
-    ("Junior Associate", "APS 3-5", 3, 5),
-    ("Classroom Teacher", "APS 3-5", 3, 5),
-    ("Senior Administrator", "APS 5-8", 5, 8),
-    ("PhD Candidate", "APS 5-8", 5, 8),
-    ("Associate", "APS 5-8", 5, 8),
-    ("Snr Teacher", "APS 5-8", 5, 8),
-    ("Office Manager", "EL1 8-10", 8, 10),
-    ("Post-Doc Researcher", "EL1 8-10", 8, 10),
-    ("Senior Associate 1-2", "EL1 8-10", 8, 10),
-    ("Leading Teacher", "EL1 8-10", 8, 10),
-    ("Director", "EL2 10-13", 10, 13),
-    ("Senior Lecturer", "EL2 10-13", 10, 13),
-    ("Senior Associate 3-4", "EL2 10-13", 10, 13),
-    ("Deputy Principal", "EL2 10-13", 10, 13),
-    ("CEO", "SES", 13, 50),
-    ("Dean", "SES", 13, 50),
-    ("Partner", "SES", 13, 50),
-    ("Principal", "SES", 13, 50),
-];
 fn main() {
+    // Create vectors to store the job data
+    let job_titles = vec![
+        "Intern", "Paralegal", "Placement", "Administrator", "Research Assistant",
+        "Junior Associate", "Classroom Teacher", "Senior Administrator", "PhD Candidate",
+        "Associate", "Snr Teacher", "Office Manager", "Post-Doc Researcher", 
+        "Senior Associate 1-2", "Leading Teacher", "Director", "Senior Lecturer",
+        "Senior Associate 3-4", "Deputy Principal", "CEO", "Dean", "Partner", "Principal"
+    ];
+    
+    let levels = vec![
+        "APS 1-2", "APS 1-2", "APS 1-2", "APS 3-5", "APS 3-5",
+        "APS 3-5", "APS 3-5", "APS 5-8", "APS 5-8", "APS 5-8",
+        "APS 5-8", "EL1 8-10", "EL1 8-10", "EL1 8-10", "EL1 8-10",
+        "EL2 10-13", "EL2 10-13", "EL2 10-13", "EL2 10-13", "SES",
+        "SES", "SES", "SES"
+    ];
+    
+    let departments = vec![
+        "Office Administrator", "Lawyer", "Teacher", "Office Administrator", "Academic",
+        "Lawyer", "Teacher", "Office Administrator", "Academic", "Lawyer",
+        "Teacher", "Office Administrator", "Academic", "Lawyer", "Teacher",
+        "Office Administrator", "Academic", "Lawyer", "Teacher", "Office Administrator",
+        "Academic", "Lawyer", "Teacher"
+    ];
+    
+    let min_experience = vec![1, 1, 1, 3, 3, 3, 3, 5, 5, 5, 5, 8, 8, 8, 8, 10, 10, 10, 10, 13, 13, 13, 13];
+    
+    let max_experience = vec![2, 2, 2, 5, 5, 5, 5, 8, 8, 8, 8, 10, 10, 10, 10, 13, 13, 13, 13, 50, 50, 50, 50];
+
     println!("Enter the staff member's job title (e.g., Associate):");
     let mut input_title = String::new();
     io::stdin().read_line(&mut input_title).expect("Failed to read line");
-    let clean_title = input_title.trim().to_lowercase();
+    let mut clean_title = input_title.trim();
 
     println!("Enter the number of years of work experience (e.g., 6):");
     let mut input_exp = String::new();
@@ -46,20 +48,28 @@ fn main() {
     };
 
     let mut result_message = format!("No matching level found for title '{}' with {} years of experience.", clean_title, experience_years);
+    let mut department_title = format!("Department not found");
 
-    // Iterate through the static array of tuples
-    for &(title, level, min_exp, max_exp) in JOB_DATA_EXP.iter() {
-        if title.to_lowercase() == clean_title {
-            if experience_years >= min_exp && experience_years <= max_exp {
-                result_message = format!("The staff member holds position: {} ({} to {} years experience required).", level, min_exp, max_exp);
+    // Iterate through the vectors
+    for i in 0..job_titles.len() {
+        if job_titles[i] == clean_title {
+            if experience_years >= min_experience[i] && experience_years <= max_experience[i] {
+                result_message = format!("The staff member holds position: {} ({} to {} years experience required).", 
+                    levels[i], min_experience[i], max_experience[i]);
+                department_title = format!("Department: {}", departments[i]);
                 break; // Found the correct, validated level
             } else {
-                result_message = format!("Found title '{}', but {} years of experience does not match the required range of {} to {} years for this level ({}).", clean_title, experience_years, min_exp, max_exp, level);
+                result_message = format!("Found title '{}', but {} years of experience does not match the required range of {} to {} years for this level ({}).", 
+                    clean_title, experience_years, min_experience[i], max_experience[i], levels[i]);
+                department_title = format!("Department: {}", departments[i]);
                 break; // Found the title but experience is wrong
             }
         }
     }
 
+
     println!("\n--- Result ---");
+    println!("{}", department_title);
+    println!("Position: {}", clean_title);
     println!("{}", result_message);
 }
