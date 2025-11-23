@@ -22,10 +22,10 @@ static JOB_DATA_EXP: [(&str, &str, u32, u32); 23] = [
     ("Senior Lecturer", "EL2 10-13", 10, 13),
     ("Senior Associate 3-4", "EL2 10-13", 10, 13),
     ("Deputy Principal", "EL2 10-13", 10, 13),
-    ("CEO", "SES", 13, u32::MAX),
-    ("Dean", "SES", 13, u32::MAX),
-    ("Partner", "SES", 13, u32::MAX),
-    ("Principal", "SES", 13, u32::MAX),
+    ("CEO", "SES", 13, 50),
+    ("Dean", "SES", 13, 50),
+    ("Partner", "SES", 13, 50),
+    ("Principal", "SES", 13, 50),
 ];
 fn main() {
     println!("Enter the staff member's job title (e.g., Associate):");
