@@ -10,7 +10,7 @@ fn main() {
         .as_bytes()).expect("write failed");
     file.write(announce.as_bytes()).expect("write failed");
     file.write(dept.as_bytes()).expect("write failed");
-    println!("\nData written to file.");
+    println!("\nData written to file");
 
     let mut file = OpenOptions::new().append(true).open("data.txt").expect("cannot open file");
     file.write_all("\nHello Class".as_bytes()).expect("write failed");

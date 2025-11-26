@@ -9,6 +9,6 @@ fn main() {
         .as_bytes()).expect("write failed");
    file.write_all(announce.as_bytes()).expect("write failed");
    file.write_all(dept.as_bytes()).expect("write failed");
-   println!("\nData written to file.");
+   println!("\nData written to file");
 
 }

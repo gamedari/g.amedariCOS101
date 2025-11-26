@@ -10,7 +10,7 @@ fn main() {
         .as_bytes()).expect("write failed");
     file.write(announce.as_bytes()).expect("write failed");
     file.write(dept.as_bytes()).expect("write failed");
-    println!("\nData written to file.");
+    println!("\nData written to file");
 
     fs::remove_file("data.txt").expect("could not remove file");
     println!("FIle is removed");

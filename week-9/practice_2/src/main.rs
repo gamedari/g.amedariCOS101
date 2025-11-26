@@ -10,7 +10,7 @@ fn main() {
         .as_bytes()).expect("write failed");
     file.write(announce.as_bytes()).expect("write failed");
     file.write(dept.as_bytes()).expect("write failed");
-    println!("\nData written to file.");
+    println!("\nData written to file");
 
     let mut file = std::fs::File::open("welcome_message.txt").unwrap();
     let mut contents = String::new();
